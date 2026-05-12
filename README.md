@@ -1,4 +1,4 @@
-# 🗂️ XML ETL — Service Provider Content Extractor
+# XML ETL — Service Provider Content Extractor 🗂️ 
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Stable-28a745?style=for-the-badge&logoColor=white)
@@ -10,21 +10,21 @@
 
 ---
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos 📋 
 
-- [¿Qué problema resuelve?](#-qué-problema-resuelve)
-- [Proceso ETL](#️-proceso-etl)
-- [Estructura de Carpetas](#-estructura-de-carpetas)
-- [Requisitos](#-requisitos)
-- [Instalación y Uso](#-instalación-y-uso)
-- [Tabla de Transformación de Caracteres](#-tabla-de-transformación-de-caracteres)
-- [Detalles Técnicos](#-detalles-técnicos)
-- [Ejemplo de Salida](#-ejemplo-de-salida)
-- [Licencia](#-licencia)
+- [¿Qué problema resuelve?](#qué-problema-resuelve-)
+- [Proceso ETL](#proceso-etl-️)
+- [Estructura de Carpetas](#estructura-de-carpetas-)
+- [Requisitos](#requisitos-️)
+- [Instalación y Uso](#instalación-y-uso-)
+- [Tabla de Transformación de Caracteres](#tabla-de-transformación-de-caracteres-)
+- [Detalles Técnicos](#detalles-técnicos-)
+- [Ejemplo de Salida](#ejemplo-de-salida-)
+- [Licencia](#licencia-)
 
 ---
 
-## 🎯 ¿Qué problema resuelve?
+## ¿Qué problema resuelve? 🎯 
 
 Los sistemas CMS como **Adobe Experience Manager (AEM)** almacenan el contenido en archivos `.content.xml` donde los nombres de nodos contienen caracteres especiales codificados en formato hexadecimal (por ejemplo, `Mi_x0020_Producto_x0028_2024_x0029_`). Leer estos archivos manualmente es tedioso y propenso a errores.
 
@@ -36,7 +36,7 @@ Los sistemas CMS como **Adobe Experience Manager (AEM)** almacenan el contenido 
 
 ---
 
-## ⚙️ Proceso ETL
+## Proceso ETL ⚙️ 
 
 ```
 ╔══════════════════╦══════════════════════════╦══════════════════════════╗
@@ -55,21 +55,21 @@ Los sistemas CMS como **Adobe Experience Manager (AEM)** almacenan el contenido 
 ╚══════════════════╩══════════════════════════╩══════════════════════════╝
 ```
 
-### 🟡 Extract — `ET.parse()` + `get_tags()`
+### Extract — `ET.parse()` + `get_tags()` 🟡
 
 El script abre y parsea el archivo `.content.xml` usando `xml.etree.ElementTree`. La función `get_tags()` recorre los nodos `service-providers` con bucles anidados y recolecta los tags de los tres sub-niveles de la jerarquía.
 
-### 🔵 Transform — `replace_char()`
+### Transform — `replace_char()` 🔵
 
 Cada tag extraído pasa por `replace_char()`, que aplica una lista de reemplazos secuenciales para decodificar los caracteres especiales codificados por el CMS. Los reemplazos cubren espacios, símbolos de puntuación y dígitos del 0 al 9.
 
-### 🟢 Load — `print()` + `time.perf_counter()`
+### Load — `print()` + `time.perf_counter()` 🟢
 
 Los tags limpios se imprimen en la consola en grupos de 3 elementos por línea (proveedor, categoría, producto) usando `" ".join()`. Al finalizar, el script reporta el tiempo total de ejecución con precisión de microsegundos.
 
 ---
 
-## 📁 Estructura de Carpetas
+## Estructura de Carpetas 📁
 
 ```
 xml-etl/
@@ -87,7 +87,7 @@ xml-etl/
 
 ---
 
-## 🛠️ Requisitos
+## Requisitos 🛠️
 
 | Componente | Versión / Detalle |
 |---|---|
@@ -98,7 +98,7 @@ xml-etl/
 
 ---
 
-## 🚀 Instalación y Uso
+## Instalación y Uso 🚀
 
 No hay nada que instalar. Solo necesitás Python y tu archivo XML.
 
@@ -139,7 +139,7 @@ Elapse time: 0.03 seconds
 
 ---
 
-## 🔄 Tabla de Transformación de Caracteres
+## Tabla de Transformación de Caracteres 🔄
 
 La función `replace_char()` decodifica los siguientes 16 códigos hexadecimales. Los reemplazos se aplican **de forma secuencial** sobre el mismo string, por lo que un tag puede contener múltiples códigos y todos serán sustituidos en un solo paso.
 
@@ -166,7 +166,7 @@ La función `replace_char()` decodifica los siguientes 16 códigos hexadecimales
 
 ---
 
-## 🔬 Detalles Técnicos
+## Detalles Técnicos 🔬 
 
 ### Profundidad de Navegación XML
 
@@ -221,7 +221,7 @@ print(f"\nElapse time: {end_time - start_time:.2f} seconds")
 
 ---
 
-## 📤 Ejemplo de Salida
+## Ejemplo de Salida 📤
 
 Dado un `.content.xml` con proveedores de servicios de telecomunicaciones cuyos nodos están codificados:
 
@@ -245,7 +245,7 @@ Elapse time: 0.03 seconds
 
 ---
 
-## 📜 Licencia
+## Licencia 📜 
 
 Distribuido bajo la licencia **MIT**. Consultá el archivo `LICENSE` para más detalles.
 
